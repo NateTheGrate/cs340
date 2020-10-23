@@ -7,4 +7,8 @@
 -- Order by the category name in ascending order.
 
 
-SELECT 
+SELECT c.name AS "category_name", count(fc.film_id) AS "number_of_films"
+FROM category c LEFT JOIN (film_category fc JOIN (film_actor fa JOIN actor a ON fa.actor_id = a.actor_id) ON fc.film_id = fa.film_id) ON c.category_id = fc.category_id
+WHERE a.first_name = "ED", a.last_name = "CHASE"
+ORDER BY c.name ASC;
+
